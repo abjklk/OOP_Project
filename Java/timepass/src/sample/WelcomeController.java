@@ -2,17 +2,25 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class WelcomeController {
+public class WelcomeController implements Initializable {
 
+
+    public ImageView logo;
 
     public void login(ActionEvent actionEvent) throws IOException {
         //create fxml parent
@@ -38,5 +46,24 @@ public class WelcomeController {
         //set scene to stage
         window.setScene(new Scene(signUpView, 600, 400));
         window.show();
+    }
+
+    public void about(MouseEvent mouseEvent) throws IOException {
+        Parent aboutView = FXMLLoader.load(getClass().getResource("../main/About.fxml"));
+        Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.setScene(new Scene(aboutView, 600, 400));
+        window.show();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        FileInputStream input = null;
+        try {
+            input = new FileInputStream("resources/images/logo.png");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Image i = new Image(input);
+        logo.setImage(i);
     }
 }

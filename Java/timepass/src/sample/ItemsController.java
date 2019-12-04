@@ -6,10 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -19,6 +17,9 @@ import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -29,10 +30,11 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class ItemsController implements Initializable{
 
-public ListView listView;
-public User user;
-public String type;
-public MenuButton menu;
+    public ListView listView;
+    public User user;
+    public String type;
+    public MenuButton menu;
+    public SplitMenuButton profile;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,18 +58,7 @@ public MenuButton menu;
                 e.printStackTrace();
             }
             JSONObject j = (JSONObject) x;
-//            JSONArray arr = (JSONArray) j.get("items");
-//            for (Object o : arr) {
-//                JSONObject item = (JSONObject) o;
-//                String a = (String) item.get("name");
-//                String b = (String) item.get("description");
-//                Double c = (Double) item.get("price");
-//
-//            }
-//
-//            String a = (String) j.get("name");
-//            String b = (String) j.get("description");
-//            Double c = (Double) j.get("price");
+
             String d = (String) j.get("seller");
             Items item = new Items(
                     (String) j.get("name"),
@@ -78,12 +69,7 @@ public MenuButton menu;
             add(item,d);
 
         }
-//        BasicDBObjectBuilder docBuilder = BasicDBObjectBuilder.start();
-//        docBuilder.append("title", "raspberry pi");
-//        docBuilder.append("desc", "Brand old");
-//        docBuilder.append("price", "102021");
-//        DBObject doc = docBuilder.get();
-//        WriteResult result = col.insert(doc);
+
     }
 
     public void add(Items x,String se) {
@@ -92,7 +78,19 @@ public MenuButton menu;
         FontIcon phoneIcon = new FontIcon("fa-phone");
         FontIcon inrIcon = new FontIcon("fa-rupee");
 
-        ImageView imageView = new ImageView();
+        FileInputStream input = null;
+        try {
+            if(x.getType().equals("Micro-controller"))
+                input = new FileInputStream("resources/images/x.jpg");
+            else if(x.getType().equals("Actuator"))
+                input = new FileInputStream("resources/images/actuator.jpg");
+            else
+                input = new FileInputStream("resources/images/sensor.jpg");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Image image = new Image(input);
+        ImageView imageView = new ImageView(image);
         imageView.setFitHeight(91.0);
         imageView.setFitWidth(102.0);
         imageView.setLayoutX(7.0);
@@ -144,7 +142,7 @@ public MenuButton menu;
         buy.setMnemonicParsing(false);
 
         Label contact = new Label("Contact: "+se,phoneIcon);
-        contact.setLayoutX(477.0);
+        contact.setLayoutX(460.0);
         contact.setLayoutY(97.0);
 
         Pane itemPane = new Pane(imageView,title,desc,i,price,buy,contact);
@@ -172,8 +170,7 @@ public MenuButton menu;
             DBObject doc = createDBObject(x,z);
             DBCollection userCol = db.getCollection("users");
             query = BasicDBObjectBuilder.start().add("usn",user.getUsn()).get();
-//            List <DBObject> update = new ArrayList<DBObject>();
-//            update.add(doc);
+
             BasicDBObject temp = new BasicDBObject();
             temp.put("$push",new BasicDBObject("items",doc));
             userCol.update(query,temp);
@@ -203,7 +200,6 @@ public MenuButton menu;
         window.setTitle("Add Items");
         window.setScene(itemScene);
         window.show();
-
     }
 
 
@@ -219,9 +215,7 @@ public MenuButton menu;
         while (cursor.hasNext()) {
             Object x = new JSONParser().parse(cursor.next().toString());
             JSONObject j = (JSONObject) x;
-//            String a = (String) j.get("name");
-//            String b = (String) j.get("description");
-//            Double c = (Double) j.get("price");
+
             String d = (String) j.get("seller");
             Items l = new Items(
                     (String) j.get("name"),
@@ -229,7 +223,6 @@ public MenuButton menu;
                     (String)j.get("description"),
                     ((Double)j.get("price")).floatValue()
             );
-//            add(a, b, c, d);
             add(l,d);
         }
     }
@@ -245,9 +238,7 @@ public MenuButton menu;
         while (cursor.hasNext()) {
             Object x = new JSONParser().parse(cursor.next().toString());
             JSONObject j = (JSONObject) x;
-//            String a = (String) j.get("name");
-//            String b = (String) j.get("description");
-//            Double c = (Double) j.get("price");
+
             String d = (String) j.get("seller");
             Items l = new Items(
                     (String) j.get("name"),
@@ -270,9 +261,7 @@ public MenuButton menu;
         while (cursor.hasNext()) {
             Object x = new JSONParser().parse(cursor.next().toString());
             JSONObject j = (JSONObject) x;
-//            String a = (String) j.get("name");
-//            String b = (String) j.get("description");
-//            Double c = (Double) j.get("price");
+
             String d = (String) j.get("seller");
             Items l = new Items(
                     (String) j.get("name"),
@@ -287,6 +276,7 @@ public MenuButton menu;
 
     void initData(User user){
         this.user = user;
+        profile.setText(user.getUsn().toUpperCase());
     }
 
     public void viewCart(ActionEvent event) throws IOException, ParseException {
@@ -305,7 +295,6 @@ public MenuButton menu;
     public void signOut(ActionEvent event) throws IOException {
         Parent loginView = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
         Stage window = (Stage)(listView.getScene().getWindow());
-        window.setTitle("Welcome page");
         window.setScene(new Scene(loginView, 600, 400));
         window.show();
     }
@@ -314,4 +303,15 @@ public MenuButton menu;
         window.close();
     }
 
+    public void goProfile(ActionEvent event) throws IOException {
+        Stage window = (Stage)(listView.getScene().getWindow());
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("Profile.fxml"));
+        Parent cartView = loader.load();
+        Scene cartScene = new Scene(cartView);
+        ProfileController controller = loader.getController();
+        controller.initData(user);
+        window.setScene(cartScene);
+        window.show();
+    }
 }

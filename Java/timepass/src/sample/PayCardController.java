@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -72,5 +73,10 @@ public class PayCardController {
         for(Items i : user.getItems())
             amt+=i.getPrice();
         this.billAmt=amt.floatValue();
+    }
+
+    public void close(MouseEvent mouseEvent) {
+        Stage window = (Stage) ((Node)mouseEvent.getSource()).getScene().getWindow();
+        window.close();
     }
 }

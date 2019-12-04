@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PayCardController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PayCardController">
    <children>
       <HBox alignment="BOTTOM_RIGHT" layoutX="112.0" layoutY="128.0" spacing="50.0">
          <children>
@@ -23,10 +28,11 @@
          </font>
       </Label>
       <Button layoutX="246.0" layoutY="252.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
-      <Label fx:id="status" layoutX="177.0" layoutY="214.0" prefHeight="18.0" prefWidth="178.0">
+      <Label fx:id="status" alignment="CENTER" contentDisplay="CENTER" layoutX="177.0" layoutY="214.0" prefHeight="18.0" prefWidth="178.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <FontIcon iconLiteral="fa-close" iconSize="22" layoutX="573.0" layoutY="27.0" onMouseClicked="#close" />
    </children>
 </AnchorPane>

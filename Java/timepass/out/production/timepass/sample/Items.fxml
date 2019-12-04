@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ItemsController">
    <children>
       <ListView fx:id="listView" layoutX="-6.0" layoutY="106.0" prefHeight="294.0" prefWidth="607.0" />
-      <SplitMenuButton layoutX="488.0" layoutY="71.0" mnemonicParsing="false" text="Profile">
+      <SplitMenuButton fx:id="profile" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="441.0" layoutY="71.0" mnemonicParsing="false" onAction="#goProfile" textAlignment="RIGHT">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#viewCart" text="View Cart">
                <graphic>

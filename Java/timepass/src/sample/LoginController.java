@@ -30,16 +30,21 @@ public class LoginController {
     User user;
 
     public void login(ActionEvent actionEvent) throws IOException, ParseException {
+        Admin admin = Admin.getInstance();
+
         MongoClient mongo = new MongoClient( "localhost" , 27017 );
         DB db = mongo.getDB("me");
         DBCollection col = db.getCollection("users");
+
         if(!usn.getText().equals("")) {
             DBObject query = BasicDBObjectBuilder.start().add("usn", usn.getText()).get();
             DBCursor cursor = col.find(query);
+
             if (cursor.hasNext()) {
                 Object x = new JSONParser().parse(cursor.next().toString());
                 JSONObject j = (JSONObject) x;
                 String pass = (String) j.get("password");
+
                 if(!password.getText().equals("")) {
                     if (password.getText().equals(pass)) {
                         User user = createObj(j);
@@ -62,7 +67,13 @@ public class LoginController {
                 }else{
                     loginStatus.setText("Enter Password!");
                 }
-            } else {
+            }
+            else if(usn.getText().equals(admin.name) && password.getText().equals(admin.pass)){
+                Parent home = FXMLLoader.load(getClass().getResource("AdminPage.fxml"));
+                Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                window.setScene(new Scene(home, 600, 400));
+                window.show();
+            }else {
                 loginStatus.setText("No User Found!");
                 usn.clear();
                 password.clear();

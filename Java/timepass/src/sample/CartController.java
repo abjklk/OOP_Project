@@ -1,10 +1,8 @@
 package sample;
 
 import com.mongodb.*;
-import com.mongodb.util.JSON;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,14 +18,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.IOException;
-import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class CartController {
     public ListView cartList;
@@ -37,7 +30,7 @@ public class CartController {
     public RadioButton debitbtn;
     public RadioButton creditbtn;
 
-    public void initData(User user) throws UnknownHostException, ParseException {
+    void initData(User user) throws UnknownHostException, ParseException {
         this.user = user;
 
         MongoClient mongo = new MongoClient( "localhost" , 27017 );
@@ -106,9 +99,7 @@ public class CartController {
         {
             try {
                 clear(x,s);
-            } catch (UnknownHostException | ParseException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (ParseException | IOException e) {
                 e.printStackTrace();
             }
         });
@@ -163,12 +154,6 @@ public class CartController {
         window.show();
     }
 
-
-    public void close(MouseEvent event) throws IOException {
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.close();
-    }
-
     private static DBObject createDBObject(Items item,String s) {
         BasicDBObjectBuilder docBuilder = BasicDBObjectBuilder.start();
         docBuilder.append("name", item.getName());
@@ -192,43 +177,45 @@ public class CartController {
     }
 
     public void checkOut(ActionEvent event) throws IOException, ParseException {
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
-        DB db = mongo.getDB("me");
-        DBCollection usersCol = db.getCollection("users");
-        DBObject query = BasicDBObjectBuilder.start().add("usn",user.getUsn()).get();
-        DBCursor cursor = usersCol.find(query);
+        if(creditbtn.isSelected() || debitbtn.isSelected()) {
+            MongoClient mongo = new MongoClient("localhost", 27017);
+            DB db = mongo.getDB("me");
+            DBCollection usersCol = db.getCollection("users");
+            DBObject query = BasicDBObjectBuilder.start().add("usn", user.getUsn()).get();
+            DBCursor cursor = usersCol.find(query);
 
-        Object obj = new JSONParser().parse(cursor.next().toString());
-        JSONObject j = (JSONObject) obj;
-        JSONArray arr = (JSONArray) j.get("items");
+            Object obj = new JSONParser().parse(cursor.next().toString());
+            JSONObject j = (JSONObject) obj;
+            JSONArray arr = (JSONArray) j.get("items");
 
-        BasicDBObject temp = new BasicDBObject();
-        temp.put("$unset",new BasicDBObject("items",j.get("items")));
-        usersCol.update(query,temp);
+            BasicDBObject temp = new BasicDBObject();
+            temp.put("$unset", new BasicDBObject("items", j.get("items")));
+            usersCol.update(query, temp);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("PayCard.fxml"));
-        Parent itemView = loader.load();
-        Scene itemScene = new Scene(itemView);
-        PayCardController controller = loader.getController();
-        controller.initData(user);
-        window.setScene(itemScene);
-        window.show();
-
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("PayCard.fxml"));
+            Parent itemView = loader.load();
+            Scene itemScene = new Scene(itemView);
+            PayCardController controller = loader.getController();
+            controller.initData(user);
+            window.setScene(itemScene);
+            window.show();
+        }
     }
 
     public void payDebit(ActionEvent event) {
         creditbtn.setSelected(false);
         debitbtn.setSelected(true);
-
     }
-
 
     public void payCredit(ActionEvent event) {
         debitbtn.setSelected(false);
         creditbtn.setSelected(true);
-
+    }
+    public void close(MouseEvent event) throws IOException {
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.close();
     }
 }
 

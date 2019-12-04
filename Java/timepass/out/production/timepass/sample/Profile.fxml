@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ProfileController">
+   <children>
+      <ImageView fx:id="img" fitHeight="100.0" fitWidth="118.0" layoutX="24.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="449.0" layoutY="57.0" text="Profile">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <FontIcon iconLiteral="fa-window-close" iconSize="20" layoutX="566.0" layoutY="31.0" onMouseClicked="#close" wrappingWidth="19.2000732421875" />
+      <FontIcon iconLiteral="fa-arrow-circle-left" iconSize="22" layoutX="14.0" layoutY="31.0" onMouseClicked="#goBack" wrappingWidth="19.2000732421875" />
+      <VBox layoutX="201.0" layoutY="80.0" spacing="30.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label text="Name" />
+                  <Label fx:id="name">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label text="Account ID" />
+                  <Label fx:id="usn">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" spacing="20.0">
+               <children>
+                  <Label text="Semester" />
+                  <Label fx:id="sem">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label text="Address" />
+                  <Label fx:id="address">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label text="Phone Number" />
+                  <Label fx:id="pno">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

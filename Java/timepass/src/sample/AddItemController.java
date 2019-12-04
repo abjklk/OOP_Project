@@ -46,22 +46,23 @@ public class AddItemController implements Initializable {
             x = new Microcontrollers();
         x.setName(name.getText());
         x.setDescription(description.getText());
-        x.setPrice(Float.parseFloat(price.getText()));
 
-        DBObject doc = createDBObject(x,user.getPno()+"");
+        try {
+            x.setPrice(Float.parseFloat(price.getText()));
+            DBObject doc = createDBObject(x,user.getPno()+"");
+            // Creating a Mongo client
+            MongoClient mongo = new MongoClient( "localhost" , 27017 );
+            DB db = mongo.getDB("me");
+            DBCollection col = db.getCollection("items");
 
-        // Creating a Mongo client
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
-        DB db = mongo.getDB("me");
-        DBCollection col = db.getCollection("items");
-//        DBObject query = BasicDBObjectBuilder.start().add("usn",user.getUsn()).get();
-//        List <DBObject> update = new ArrayList<DBObject>();
-//        update.add(doc);
-//        BasicDBObject temp = new BasicDBObject();
-//        temp.put("$set",new BasicDBObject("items",update));
-//        col.update(query,temp);
-        WriteResult result = col.insert(doc);
-        status.setText("Item Placed Successfully!");
+            col.insert(doc);
+            status.setText("Item Placed Successfully!");
+        }
+        catch (Exception e){
+            status.setText("Incorrect Price Format!");
+        }
+
+
     }
 
     private static DBObject createDBObject(Items item,String u) {

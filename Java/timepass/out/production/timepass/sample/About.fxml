@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AboutController">
+   <children>
+      <Label layoutX="444.0" layoutY="45.0" text="About Us...">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="img" fitHeight="98.0" fitWidth="329.0" layoutX="249.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
+
+      </ImageView>
+      <VBox layoutX="47.0" layoutY="113.0" spacing="20.0">
+         <children>
+            <Label text="Name : Akshay Gunari">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="USN : 01FE17BCS026">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="5th Sem Div A">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="akshaygunari@gmail.com">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="315.0" layoutY="113.0" spacing="20.0">
+         <children>
+            <Label text="Name : Gourav Jamakhandi">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="USN : 01FE17BCS246">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="5th Sem Div A">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="gau6rav@gmail.com">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <FontIcon iconLiteral="fa-arrow-circle-left" iconSize="22" layoutX="14.0" layoutY="29.0" onMouseClicked="#goBack" />
+      <FontIcon iconLiteral="fa-globe" iconSize="18" layoutX="211.0" layoutY="249.0" wrappingWidth="17.485726356506348" />
+      <FontIcon iconLiteral="fa-globe" iconSize="18" layoutX="449.0" layoutY="249.0" wrappingWidth="17.485726356506348" />
+      <FontIcon iconLiteral="fa-close" iconSize="20" layoutX="570.0" layoutY="29.0" onMouseClicked="#close" />
+   </children>
+</AnchorPane>

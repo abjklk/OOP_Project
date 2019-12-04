@@ -10,6 +10,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.json.simple.parser.JSONParser;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
 import java.net.*;
 import java.util.Enumeration;
 
@@ -46,11 +49,5 @@ public class Main extends Application {
 
     public static void main(String[] args) throws UnknownHostException, SocketException {
         launch(args);
-
-        try(final DatagramSocket socket = new DatagramSocket()){
-            socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
-            String ip = socket.getLocalAddress().getHostAddress();
-            System.out.println(ip);
-        }
     }
 }

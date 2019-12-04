@@ -1,6 +1,8 @@
 package sample;
 
 import com.mongodb.*;
+import com.mongodb.gridfs.GridFS;
+import com.mongodb.gridfs.GridFSInputFile;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,10 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
+import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 
 public class NewUserController implements Initializable {
@@ -29,6 +32,7 @@ public class NewUserController implements Initializable {
     public Label status;
     @FXML
     private TextField password;
+    private File imageFile = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,30 +44,45 @@ public class NewUserController implements Initializable {
         branch.getItems().add("School of Biotechnology");
     }
 
-    public void onClick() throws UnknownHostException {
+    public void upload() throws IOException {
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int returnValue = jfc.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            imageFile = jfc.getSelectedFile();
+        }
+    }
 
-//        System.out.println(name.getText());
-//        System.out.println(usn.getText());
-//        System.out.println(Integer.parseInt(sem.getText()));
-//        System.out.println(branch.getText());
-//        System.out.println(address.getText());
-//        System.out.println(Integer.parseInt(pno.getText()));
+    public void onClick() throws IOException {
+
         User user  = new User();
-        user.setName(name.getText());
-        user.setAddress(address.getText());
-        user.setUsn(usn.getText());
-        user.setSem(Integer.parseInt(sem.getText()));
-        user.setBranch(branch.getValue().toString());
-        user.setPno(Integer.parseInt(pno.getText()));
-        user.setPassword(password.getText());
+        try {
+            user.setName(name.getText());
+            user.setAddress(address.getText());
+            user.setUsn(usn.getText());
+            user.setSem(Integer.parseInt(sem.getText()));
+            user.setBranch(branch.getValue().toString());
+            user.setPno(Integer.parseInt(pno.getText()));
+            user.setPassword(password.getText());
 
-        DBObject doc = createDBObject(user);
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
-        DB db = mongo.getDB("me");
-        DBCollection userCol = db.getCollection("users");
-        WriteResult result = userCol.insert(doc);
-        status.setText("User added Successfully.");
-        clearFields();
+            DBObject doc = createDBObject(user);
+            MongoClient mongo = new MongoClient("localhost", 27017);
+            DB db = mongo.getDB("me");
+            DBCollection userCol = db.getCollection("users");
+            WriteResult result = userCol.insert(doc);
+
+            //Add images to db using GridFS
+            DB imgDb = mongo.getDB("imgDb");
+            DBCollection imgCol = db.getCollection("images");
+            String newFileName = usn.getText();
+            GridFS gfsPhoto = new GridFS(imgDb, "photo");
+            GridFSInputFile gfsFile = gfsPhoto.createFile(imageFile);
+            gfsFile.setFilename(newFileName);
+            gfsFile.save();
+            status.setText("User added Successfully.");
+            clearFields();
+        }catch (Exception e){
+            status.setText("Error");
+        }
     }
 
     private static DBObject createDBObject(User x) {

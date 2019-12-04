@@ -88,7 +88,7 @@ public:
                     break;
                 }
                 else
-                    break;
+                    break; 
             }
             else
             {
@@ -313,7 +313,7 @@ public:
         cout<<"--------------------\n";
         cout<<"Item Name: "<<name<<endl;
         cout<<"Item ID: "<<id<<endl;
-        cout<<"Category: Actuators\n";
+        cout<<"Category: Sensor\n";
         cout<<"Price: "<<this->price<<endl;
         cout<<"Description Of The Product: "<<description<<endl;
         cout<<"--------------------\n";

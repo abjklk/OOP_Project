@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WelcomeController">
+   <children>
+      <Button fx:id="loginbtn" layoutX="151.0" layoutY="208.0" mnemonicParsing="false" onAction="#login" text="Log in" />
+      <Button fx:id="signupbtn" layoutX="371.0" layoutY="208.0" mnemonicParsing="false" onAction="#signUp" text="Sign Up" />
+      <Label layoutX="136.0" layoutY="49.0" text="Welcome to KLE TECH E-MART" textFill="#090011">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="5.0" layoutY="377.0" text="© Gourav J &amp; Akshay G 2019">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <FontIcon iconLiteral="fa-window-close" iconSize="20" layoutX="572.0" layoutY="21.0" onMouseClicked="#close" wrappingWidth="19.2000732421875" />
+   </children>
+</AnchorPane>

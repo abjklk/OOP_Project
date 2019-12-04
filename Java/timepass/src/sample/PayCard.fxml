@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PayCardController">
+   <children>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="112.0" layoutY="128.0" spacing="50.0">
+         <children>
+            <VBox spacing="20.0">
+               <children>
+                  <TextField fx:id="name" promptText="Account Holder's Name" />
+                  <TextField fx:id="cno" promptText="Card Number" />
+               </children>
+            </VBox>
+            <TextField fx:id="cvv" prefHeight="26.0" prefWidth="53.0" promptText="CVV" />
+         </children>
+      </HBox>
+      <Label layoutX="393.0" layoutY="42.0" text="Enter Card Details">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="246.0" layoutY="252.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
+      <Label fx:id="status" layoutX="177.0" layoutY="214.0" prefHeight="18.0" prefWidth="178.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

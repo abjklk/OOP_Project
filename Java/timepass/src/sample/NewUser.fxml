@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.NewUserController">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="196.0" layoutY="29.0" spacing="20.0">
+         <children>
+            <TextField fx:id="name" promptText="Name" />
+            <TextField fx:id="usn" promptText="USN" />
+            <TextField fx:id="sem" promptText="Semester" />
+            <ChoiceBox fx:id="branch" prefWidth="150.0" />
+            <TextField fx:id="address" promptText="Address" />
+            <TextField fx:id="pno" promptText="Phone No." />
+            <PasswordField fx:id="password" promptText="Password" />
+         </children>
+      </VBox>
+      <Label fx:id="status" layoutX="413.0" layoutY="154.0" prefHeight="18.0" prefWidth="149.0" />
+      <Button fx:id="addbtn" layoutX="232.0" layoutY="348.0" mnemonicParsing="false" onAction="#onClick" text="Add User">
+         <graphic>
+            <FontIcon iconLiteral="fa-plus" />
+         </graphic></Button>
+      <Label layoutX="438.0" layoutY="68.0" lineSpacing="1.0" prefHeight="27.0" prefWidth="98.0" text="Sign Up" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER_RIGHT" layoutX="82.0" layoutY="31.0" prefHeight="296.0" prefWidth="104.0" spacing="29.0">
+         <children>
+            <Label text="Enter Name :" />
+            <Label text="Enter USN :" />
+            <Label text="Enter Semester :" />
+            <Label text="Enter Branch :" />
+            <Label text="Enter Address :" />
+            <Label text="Enter Phone no :" />
+            <Label layoutX="10.0" layoutY="274.0" text="Enter Password :" />
+         </children>
+      </VBox>
+      <FontIcon iconLiteral="fa-window-close" iconSize="20" layoutX="566.0" layoutY="31.0" onMouseClicked="#close" wrappingWidth="19.2000732421875" />
+      <FontIcon iconLiteral="fa-arrow-circle-left" iconSize="20" layoutX="14.0" layoutY="31.0" />
+      <FontIcon iconLiteral="fa-pencil-square-o" iconSize="24" layoutX="536.0" layoutY="90.0" wrappingWidth="19.2000732421875" />
+
+   </children>
+</AnchorPane>

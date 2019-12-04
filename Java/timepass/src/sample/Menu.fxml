@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="47.0" prefWidth="600.0">
+               <children>
+                  <Label fx:id="profile" layoutX="449.0" layoutY="15.0" />
+               </children>
+            </Pane>
+            <HBox prefHeight="146.0" prefWidth="600.0" spacing="120.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#onClick" prefHeight="119.0" prefWidth="217.0" text="View Store" />
+                  <Button mnemonicParsing="false" onAction="#addItem" prefHeight="119.0" prefWidth="217.0" text="Add Item" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#signOut" text="Sign Out" />
+         </children>
+      </VBox>
+      <FontIcon iconLiteral="fa-window-close" iconSize="20" layoutX="572.0" layoutY="21.0" onMouseClicked="#close" wrappingWidth="19.2000732421875" />
+
+   </children>
+
+</AnchorPane>

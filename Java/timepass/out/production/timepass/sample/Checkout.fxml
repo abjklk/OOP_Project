@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.CheckoutController">
+   <children>
+      <VBox alignment="CENTER_LEFT" layoutX="139.0" layoutY="18.0" prefHeight="364.0" prefWidth="322.0" spacing="30.0">
+         <children>
+            <Label text="Checkout Details" fx:id="title">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <VBox spacing="5.0">
+               <children>
+                  <Label text="Billing Address: " fx:id="subtitle">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="billAddress" />
+                  <Label fx:id="price" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+       <FontIcon iconLiteral="fa-window-close" iconSize="20" layoutX="572.0" layoutY="21.0" onMouseClicked="#close" wrappingWidth="19.2000732421875" />
+   </children>
+</AnchorPane>

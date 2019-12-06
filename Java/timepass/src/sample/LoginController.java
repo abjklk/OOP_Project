@@ -32,7 +32,7 @@ public class LoginController {
     public void login(ActionEvent actionEvent) throws IOException, ParseException {
         Admin admin = Admin.getInstance();
 
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
+        MongoClient mongo = new MongoClient( "10.1.2.175" , 27017 );
         DB db = mongo.getDB("me");
         DBCollection col = db.getCollection("users");
 

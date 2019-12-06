@@ -12,7 +12,7 @@ public class mongoDB {
         DBObject doc = createDBObject(a);
 
         // Creating a Mongo client
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
+        MongoClient mongo = new MongoClient( "10.1.2.175" , 27017 );
         DB db = mongo.getDB("me");
 
         DBCollection col = db.getCollection("user");

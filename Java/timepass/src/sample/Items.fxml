@@ -14,7 +14,7 @@
                <graphic>
                   <FontIcon iconLiteral="fa-shopping-cart" />
                </graphic></MenuItem>
-            <MenuItem mnemonicParsing="false" onAction="#signOut" text="Sign Out">
+            <MenuItem mnemonicParsing="false" onAction="#signOut" text="Show history">
                <graphic>
                   <FontIcon iconLiteral="fa-sign-out" />
                </graphic></MenuItem>

@@ -14,9 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 public class ProfileController {
 
@@ -31,11 +29,12 @@ public class ProfileController {
     void initData(User user) throws IOException {
         this.user = user;
 
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
+        MongoClient mongo = new MongoClient( "10.1.2.175" , 27017 );
         DB db = mongo.getDB("imgDb");
         DBCollection imgCol = db.getCollection("images");
         GridFS gfsPhoto = new GridFS(db, "photo");
         GridFSDBFile imageOp = gfsPhoto.findOne(user.getUsn());
+
         try {
             Image i = new Image(imageOp.getInputStream());
             img.setImage(i);

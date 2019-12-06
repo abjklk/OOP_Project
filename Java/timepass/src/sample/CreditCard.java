@@ -69,22 +69,22 @@ public class CreditCard implements ICard {
         System.out.println(this.getBalance()-price);
     }
 
-    public static void main(String[] args) throws UnknownHostException {
-        ICard card = new CreditCard("PQR",7868,847174746,990,84210);
-        ICard dCard = new DebitCard("MNO",6392,836636711,420,1803719);
-
-        DBObject c1 = createDBObject(card);
-        DBObject c2 = createDBObject(dCard);
-
-        MongoClient mongo = new MongoClient("localhost", 27017);
-        DB db = mongo.getDB("me");
-        DBCollection col = db.getCollection("cards");
-        col.insert(c1);
-        col.insert(c2);
-
-//        card.buy(120);
-//        dCard.buy(221);
-    }
+//    public static void main(String[] args) throws UnknownHostException {
+//        ICard card = new CreditCard("ABC",1234,847174746,123,84210);
+//        ICard dCard = new DebitCard("MNO",6392,836636711,420,1803719);
+//
+//        DBObject c1 = createDBObject(card);
+//        DBObject c2 = createDBObject(dCard);
+//
+//        MongoClient mongo = new MongoClient("10.1.2.175", 27017);
+//        DB db = mongo.getDB("me");
+//        DBCollection col = db.getCollection("cards");
+//        col.insert(c1);
+//        col.insert(c2);
+//
+////        card.buy(120);
+////        dCard.buy(221);
+//    }
     private static DBObject createDBObject(ICard card) {
         BasicDBObjectBuilder docBuilder = BasicDBObjectBuilder.start();
         docBuilder.append("name", card.getName());

@@ -17,11 +17,7 @@ public class MenuController {
     public Label profile;
 
     public void onClick(ActionEvent actionEvent) throws IOException {
-//        Parent loginView = FXMLLoader.load(getClass().getResource("Items.fxml"));
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//            window.setTitle("login page");
-//            window.setScene(new Scene(loginView, 600, 400));
-//            window.show();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("Items.fxml"));
         Parent itemView = loader.load();

@@ -8,13 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.json.simple.parser.JSONParser;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
-import java.io.File;
 import java.net.*;
-import java.util.Enumeration;
 
 public class Main extends Application {
 

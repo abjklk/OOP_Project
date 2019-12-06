@@ -65,7 +65,7 @@ public class NewUserController implements Initializable {
             user.setPassword(password.getText());
 
             DBObject doc = createDBObject(user);
-            MongoClient mongo = new MongoClient("localhost", 27017);
+            MongoClient mongo = new MongoClient("10.1.2.175", 27017);
             DB db = mongo.getDB("me");
             DBCollection userCol = db.getCollection("users");
             WriteResult result = userCol.insert(doc);

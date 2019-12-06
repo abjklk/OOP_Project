@@ -1,6 +1,7 @@
 package sample;
 
 import com.mongodb.*;
+import com.mongodb.util.JSON;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,7 +34,7 @@ public class CartController {
     void initData(User user) throws UnknownHostException, ParseException {
         this.user = user;
 
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
+        MongoClient mongo = new MongoClient( "10.1.2.175" , 27017 );
 
         DB db = mongo.getDB("me");
         DBCollection col = db.getCollection("users");
@@ -116,7 +117,7 @@ public class CartController {
     }
 
     private void clear(Items x,String s) throws IOException, ParseException {
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
+        MongoClient mongo = new MongoClient( "10.1.2.175" , 27017 );
         DB db = mongo.getDB("me");
         DBCollection itemsCol = db.getCollection("items");
         DBCollection usersCol = db.getCollection("users");
@@ -178,15 +179,15 @@ public class CartController {
 
     public void checkOut(ActionEvent event) throws IOException, ParseException {
         if(creditbtn.isSelected() || debitbtn.isSelected()) {
-            MongoClient mongo = new MongoClient("localhost", 27017);
+            MongoClient mongo = new MongoClient("10.1.2.175", 27017);
             DB db = mongo.getDB("me");
             DBCollection usersCol = db.getCollection("users");
+
             DBObject query = BasicDBObjectBuilder.start().add("usn", user.getUsn()).get();
             DBCursor cursor = usersCol.find(query);
 
             Object obj = new JSONParser().parse(cursor.next().toString());
             JSONObject j = (JSONObject) obj;
-            JSONArray arr = (JSONArray) j.get("items");
 
             BasicDBObject temp = new BasicDBObject();
             temp.put("$unset", new BasicDBObject("items", j.get("items")));

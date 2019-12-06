@@ -9,7 +9,7 @@ class Admin
     public String name;
     public String pass;
 
-    // private constructor restricted to this class itself
+    // constructor restricted to this class itself
     private Admin()
     {
         name = "admin";

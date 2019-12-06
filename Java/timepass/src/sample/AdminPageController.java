@@ -30,7 +30,7 @@ public class AdminPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MongoClient mongo = null;
         try {
-            mongo = new MongoClient( "localhost" , 27017 );
+            mongo = new MongoClient( "10.1.2.175" , 27017 );
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }

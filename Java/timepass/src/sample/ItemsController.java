@@ -40,7 +40,7 @@ public class ItemsController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         MongoClient mongo = null;
         try {
-            mongo = new MongoClient( "localhost" , 27017 );
+            mongo = new MongoClient( "10.1.2.175" , 27017 );
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -161,7 +161,7 @@ public class ItemsController implements Initializable{
             itemArray.add(x);
             this.user.setItems(itemArray);
             b.setText("Added to Cart.");
-            MongoClient mongo = new MongoClient( "localhost" , 27017 );
+            MongoClient mongo = new MongoClient( "10.1.2.175" , 27017 );
             DB db = mongo.getDB("me");
             DBCollection col = db.getCollection("items");
             DBObject query = BasicDBObjectBuilder.start().append("name",x.getName()).append("description",x.getDescription()).get();
@@ -207,7 +207,7 @@ public class ItemsController implements Initializable{
     public void listMicrocontrollers(ActionEvent event) throws UnknownHostException, ParseException {
         listView.getItems().clear();
         menu.setText("Microcontrollers");
-        MongoClient mongo = new MongoClient("localhost", 27017);
+        MongoClient mongo = new MongoClient("10.1.2.175", 27017);
         DB db = mongo.getDB("me");
         DBCollection col = db.getCollection("items");
         DBObject query = BasicDBObjectBuilder.start().add("type", "Micro-controller").get();
@@ -230,7 +230,7 @@ public class ItemsController implements Initializable{
     public void listActuators(ActionEvent event) throws UnknownHostException, ParseException {
         listView.getItems().clear();
         menu.setText("Actuators");
-        MongoClient mongo = new MongoClient("localhost", 27017);
+        MongoClient mongo = new MongoClient("10.1.2.175", 27017);
         DB db = mongo.getDB("me");
         DBCollection col = db.getCollection("items");
         DBObject query = BasicDBObjectBuilder.start().add("type", "Actuator").get();
@@ -253,7 +253,7 @@ public class ItemsController implements Initializable{
     public void listSensors(ActionEvent event) throws UnknownHostException, ParseException {
         listView.getItems().clear();
         menu.setText("Sensors");
-        MongoClient mongo = new MongoClient("localhost", 27017);
+        MongoClient mongo = new MongoClient("10.1.2.175", 27017);
         DB db = mongo.getDB("me");
         DBCollection col = db.getCollection("items");
         DBObject query = BasicDBObjectBuilder.start().add("type", "Sensor").get();
@@ -298,6 +298,8 @@ public class ItemsController implements Initializable{
         window.setScene(new Scene(loginView, 600, 400));
         window.show();
     }
+
+
     public void close(MouseEvent event) throws IOException {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.close();

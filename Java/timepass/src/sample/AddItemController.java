@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -51,7 +50,7 @@ public class AddItemController implements Initializable {
             x.setPrice(Float.parseFloat(price.getText()));
             DBObject doc = createDBObject(x,user.getPno()+"");
             // Creating a Mongo client
-            MongoClient mongo = new MongoClient( "localhost" , 27017 );
+            MongoClient mongo = new MongoClient( "10.1.2.175" , 27017 );
             DB db = mongo.getDB("me");
             DBCollection col = db.getCollection("items");
 

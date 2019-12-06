@@ -16,7 +16,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 public class PayCardController {
 
@@ -32,7 +31,7 @@ public class PayCardController {
     public void submit(ActionEvent event) throws IOException, ParseException {
 
         // Creating a Mongo client
-        MongoClient mongo = new MongoClient( "localhost" , 27017 );
+        MongoClient mongo = new MongoClient( "10.1.2.175" , 27017 );
         DB db = mongo.getDB("me");
         DBCollection col = db.getCollection("cards");
         DBObject query = BasicDBObjectBuilder.start().add("name", name.getText()).get();

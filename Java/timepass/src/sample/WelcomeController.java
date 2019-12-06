@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,8 +18,8 @@ import java.util.ResourceBundle;
 
 public class WelcomeController implements Initializable {
 
-
     public ImageView logo;
+    public ImageView logo1;
 
     public void login(ActionEvent actionEvent) throws IOException {
         //create fxml parent
@@ -49,7 +48,7 @@ public class WelcomeController implements Initializable {
     }
 
     public void about(MouseEvent mouseEvent) throws IOException {
-        Parent aboutView = FXMLLoader.load(getClass().getResource("../main/About.fxml"));
+        Parent aboutView = FXMLLoader.load(getClass().getResource("About.fxml"));
         Stage window = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         window.setScene(new Scene(aboutView, 600, 400));
         window.show();
@@ -65,5 +64,14 @@ public class WelcomeController implements Initializable {
         }
         Image i = new Image(input);
         logo.setImage(i);
+
+        try {
+            input = new FileInputStream("resources/images/emart.png");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        i = new Image(input);
+        logo1.setImage(i);
+
     }
 }

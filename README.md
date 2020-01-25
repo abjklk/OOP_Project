@@ -1,3 +1,3 @@
 # OOP_Project
 
-Java Implementation of e-mart.
+Java & C++ Implementation of e-mart.
